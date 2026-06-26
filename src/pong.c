@@ -1,5 +1,18 @@
 //I WANT TO PLAY WITH YOU
 //        YOUR FRIEND, AI
 
+//размер поля
+const int width = 80;
+const int height = 25;
+//начальная позиция мяча
+int ball_x = 40;
+int ball_y = 12;
+// 1 - направление вправо -1 влево 
+//соответсвенно dy 1 - вверх -1 - вниз, 0 - прямо 
+int ball_dx = 1;
+int ball_dy = 1;
 
+//начальная позиция ракетки
+int paddle1_y = 12;
+int paddle2_y = 12;
 
