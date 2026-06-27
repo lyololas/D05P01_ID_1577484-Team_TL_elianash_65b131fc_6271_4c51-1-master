@@ -1,5 +1,3 @@
-//I WANT TO PLAY WITH YOU
-//        YOUR FRIEND, AI
 #include <stdio.h>
 #include <math.h>
 //размер поля
@@ -19,25 +17,40 @@ int paddle2_y = 12;
 
 int score1 = 0;
 int score2 = 0;
-void update_ball();
-int main() {
 
-    for (int y = 1; y <= height; y++) {
-    for (int x = 1; x <= width; x++) {
-        if (y == 1 || y == height) {
-            printf("-");
-        } 
-        else if (x == 1 || x == width) {
-            printf("|");
-        } 
-        else {
-            printf(" ");
+void update_ball();
+void render();
+
+int main() {
+    char c;
+    while(1) {
+        if(scanf(" %c", &c) == 1) { 
+            update_ball(); 
+            render();
         }
     }
-    printf("\n");
-}
+    return 0;
 }
 
+void render() {
+    for (int y = 1; y <= height; y++) {
+        for (int x = 1; x <= width; x++) {
+            if (x == ball_x && y == ball_y) {
+                printf("*");
+            } 
+            else if (y == 1 || y == height) {
+                printf("-");
+            } 
+            else if (x == 1 || x == width) {
+                printf("|");
+            } 
+            else {
+                printf(" ");
+            }
+        }
+        printf("\n");
+    }
+}
 
 void update_ball() {
     ball_x += ball_dx;
@@ -63,7 +76,7 @@ void update_ball() {
     }
     if (ball_x >= width - 1) {
         if (ball_y >= paddle2_y - 1 && ball_y <= paddle2_y + 1) {
-            ball_x = width -2;
+            ball_x = width - 2;
             ball_dx = -ball_dx;
         } else {
             score1 += 1;
@@ -71,9 +84,6 @@ void update_ball() {
             ball_y = 12;
             ball_dx = -1;
             ball_dy = -1;
-            
         }
     }
-   
-
 }
