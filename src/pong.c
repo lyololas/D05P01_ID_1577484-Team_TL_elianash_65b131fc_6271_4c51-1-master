@@ -1,6 +1,7 @@
 //I WANT TO PLAY WITH YOU
 //        YOUR FRIEND, AI
-
+#include <stdio.h>
+#include <math.h>
 //размер поля
 const int width = 80;
 const int height = 25;
@@ -16,3 +17,20 @@ int ball_dy = 1;
 int paddle1_y = 12;
 int paddle2_y = 12;
 
+int main() {
+
+    for (int y = 1; y <= height; y++) {
+    for (int x = 1; x <= width; x++) {
+        if (y == 1 || y == height) {
+            printf("-");
+        } 
+        else if (x == 1 || x == width) {
+            printf("|");
+        } 
+        else {
+            printf(" ");
+        }
+    }
+    printf("\n");
+}
+}
