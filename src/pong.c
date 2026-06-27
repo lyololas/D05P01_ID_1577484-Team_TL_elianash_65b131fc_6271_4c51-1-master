@@ -17,6 +17,9 @@ int ball_dy = 1;
 int paddle1_y = 12;
 int paddle2_y = 12;
 
+int score1 = 0;
+int score2 = 0;
+void update_ball();
 int main() {
 
     for (int y = 1; y <= height; y++) {
@@ -33,4 +36,44 @@ int main() {
     }
     printf("\n");
 }
+}
+
+
+void update_ball() {
+    ball_x += ball_dx;
+    ball_y += ball_dy;  
+    if (ball_y <= 2) {
+        ball_y = 2;         
+        ball_dy = -ball_dy; 
+    } else if (ball_y >= height - 1) {
+        ball_y = 24;
+        ball_dy = -ball_dy;
+    }
+    if  (ball_x <= 2) {
+        if (ball_y >= paddle1_y - 1 && ball_y <= paddle1_y + 1) {
+            ball_x = 3;
+            ball_dx = -ball_dx;
+        } else {
+            score2 += 1;
+            ball_x = 40;
+            ball_y = 12;
+            ball_dx = 1;
+            ball_dy = 1;
+        }   
+    }
+    if (ball_x >= width - 1) {
+        if (ball_y >= paddle2_y - 1 && ball_y <= paddle2_y + 1) {
+            ball_x = width -2;
+            ball_dx = -ball_dx;
+        } else {
+            score1 += 1;
+            ball_x = 40;
+            ball_y = 12;
+            ball_dx = -1;
+            ball_dy = -1;
+            
+        }
+    }
+   
+
 }
