@@ -22,18 +22,66 @@ int map() {
     printf("\n");
 }
 }
-int paddles_placement(){
-    map();
-    for (int i = 0; i < paddle_height; i++) {
-        printf("\033[%d;%dH|", paddle_left_y + i, width - 77 );
+int main() {
+    char input;     
+    int valid = 0;  
+
+    
+    while (1) {
+        
+        printf("\033[H\033[J");
+
+        map();
+
+        
+        for (int i = 0; i < paddle_height; i++) {
+            printf("\033[%d;%dH|", paddle_left_y + i, width - 77);
+        }
+        
+        for (int i = 0; i < paddle_height; i++) {
+            printf("\033[%d;%dH|", paddle_right_y + i, width - 2);
+        }
+
+        
+        printf("\033[%d;1H", height + 1);
+        printf("Your move! \n");
+
+        
+        if (valid == 1) {
+            printf("Use the controls dumbass! \n");
+            valid = 0; 
+        } else {
+            printf("\n");
+        }
+
+        printf("Enter command: ");
+        
+        scanf(" %c", &input);
+
+        
+        if (input == 'a' || input == 'A') {
+            if (paddle_left_y > 2) paddle_left_y--;
+        }
+        else if (input == 'z' || input == 'Z') {
+            if (paddle_left_y + paddle_height < height) paddle_left_y++;
+        }
+        else if (input == 'k' || input == 'K') {
+            if (paddle_right_y > 2) paddle_right_y--;
+        }
+        
+        else if (input == 'm' || input == 'M') {
+            if (paddle_right_y + paddle_height < height) paddle_right_y++;
+        }
+        
+        else if (input == 'q' || input == 'Q') {
+            break;
+        }
+        else {
+            valid = 1; 
+        }
     }
-    for (int i = 0; i < paddle_height; i++) {
-        printf("\033[%d;%dH|", paddle_right_y + i, width - 2);
-    }
-    printf("\033[%d;1H", height + 3);
-    return 0;
-}
-int main (){
-    paddles_placement();
+
+    // Clean exit prompt below the game window
+    printf("\033[%d;1HGame closed safely.\n", height + 4);
     return 0;
 }
